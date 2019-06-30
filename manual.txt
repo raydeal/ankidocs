@@ -31,7 +31,8 @@ videos] instead.
 Translations
 ============
 
-This page translated into other languages:
+Volunteers have contributed translations of this manual. The translations
+may not always be up to date.
 
  * https://apps.ankiweb.net/docs/manual.id.html[Bahasa Indonesia]
  * http://www.dennisproksch.de/anki[Deutsch]
@@ -43,10 +44,9 @@ This page translated into other languages:
  * http://wikiwiki.jp/rage2050/?FrontPage[日本語]
  * http://www.ankichina.net/anki20.html[简体中文]
 
-These translations are contributed by volunteers. If you would like to help
-translate the manual into a different language, or you would like to look at
-the translations that are currently in progress, please see the
-<<translatingmanual,translating the manual>> section.
+If you would like to help translate the manual into a different language, or
+you would like to look at the translations that are currently in progress,
+please see the <<translatingmanual,translating the manual>> section.
 
 Introduction
 ============
@@ -2029,34 +2029,6 @@ Styling>> instructions above.
 NOTE: Please make sure the filenames match exactly. If the file is called
 arial.TTF and you write arial.ttf in your card templates, it will not work.
 
-=== Fonts on a Mac ===
-
-Embedded fonts currently do not work on OS X. It is still possible to use
-custom fonts, but they need to be installed system wide.
-
-To install a font on your system, please see http://support.apple.com/kb/HT2435?viewlocale=en_US&locale=en_US
-
-You can set up Anki to use the system font on a Mac computer, and an embedded
-font elsewhere.
-
-On your front or back template, wrap the field you want to style in the following
-code, replacing "FieldName" with the name of your field.
-
------
-<span class="mystyle">{{FieldName}}</span>
------
-
-In the styling section, in addition to the font-face line described above,
-add the following:
-
------
-.mystyle { font-family: myfont; }
-.mac .mystyle { font-family: Helvetica; }
------
-
-Replace "Helvetica" with the name of the font you installed on your system.
-Keep "myfont" as is, as it references the font you embedded.
-
 [[nightmode]]
 == Night Mode ==
 
@@ -2486,11 +2458,11 @@ filesystem.
 Conflicts
 ---------
 
-Reviews and note edits can be merged, so if you review or edit on two
-different devices before syncing, Anki will preserve your changes from both
-locations. If the same card has been reviewed in two different locations, both
-reviews will be marked in the revision history, and the card will be kept in
-the state it was when it was most recently answered.
+Under normal circumstances, reviews and note edits can be merged, so if you
+review or edit on two different devices before syncing, Anki will preserve
+your changes from both locations. If the same card has been reviewed in two
+different locations, both reviews will be marked in the revision history, and
+the card will be kept in the state it was when it was most recently answered.
 
 There are certain changes that Anki is unable to merge. These mainly relate to
 the format of notes: things like adding a new field, or removing a card
@@ -2499,10 +2471,22 @@ you, and give you the option of aborting the operation. If you choose to
 continue, you'll be asked to choose whether to keep the local copy or the copy
 on AnkiWeb when your collection is next synchronized.
 
-If you choose Upload to make the content on AnkiWeb a copy of the content on
-your local device, you then need to sync any other devices you use, and choose
-Download, so they too have the same content. Once all devices have the same
-content, future syncs will be able to merge again.
+If certain problems are detected while syncing, it will also force a one way
+sync. If you find this consistently happens, please post on our support site.
+
+When a one way sync is required, you need to choose whether you wish to keep
+the collection on your local device, or the collection on AnkiWeb. If changes have
+been made on both ends, only changes on one end can be preserved.
+
+If you choose Upload, the content on your local device will be sent to AnkiWeb.
+You then need to sync your other devices, and choose "Download" to have them
+grab a copy of that content. 
+
+If you choose Download, it will replace any local changes you've made with
+the data that is on AnkiWeb.
+
+Once all devices are in sync, future syncs will return to the normal behaviour
+of merging changes from both ends.
 
 If you wish to force a full upload or download (for example, because you
 accidentally deleted a deck on one side and want to restore the deck rather
@@ -2575,10 +2559,12 @@ If you need a proxy to access the internet, Anki should automatically pick up
 your system proxy settings if you're on Windows or OS X, and will honour the
 HTTP_PROXY environment variable if you're on another platform.
 
-Please note that advanced proxy setup via .pac or .wpad files is not supported
-in Anki.
+Anki will only be able to pick up your system settings if a proxy is manually
+configured, and does not require a password. If your system uses automatic
+proxy setup, or uses a proxy that requires a username and password, you will
+need to manually tell Anki the proxy configuration.
 
-To override the system proxy settings on Windows or OS X, define a HTTP_PROXY
+To tell Anki your proxy settings, define a HTTPS_PROXY
 environmental variable that points to the proxy server. It will look like:
 
 -----
@@ -2592,24 +2578,21 @@ to change it to %40, like so:
 http://user%40workdomain.com:pass@proxy.company.com:8080
 -----
 
-NOTE: Anki 2.1 expects to find HTTPS_PROXY instead of HTTP_PROXY.
+NOTE: Anki 2.0 expects to find HTTP_PROXY instead of HTTPS_PROXY.
 
 To set environmental variables on Windows, please see
 https://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/sysdm_advancd_environmnt_addchange_variable.mspx?mfr=true
 
 If you're on a Mac, please see http://stackoverflow.com/questions/135688/setting-environment-variables-in-os-x
 
-NOTE: The toolkit Anki is built on is unfortunately not currently able to
-pick up your proxy username and password from your system settings. This means
-that if you use a proxy that requires authentication, syncing will fail. In
-this case, you will need to use an environmental variable that defines your
-proxy details as described above, or use a personal proxy server that you
-route traffic through, which in turn connects to the upstream proxy that requires
-authentication.
-
 NOTE: Heavily locked down networks that intercept secure connections and present
-their own certificate instead may cause Anki to throw up SSL errors. We do not
-support using Anki in such environments.
+their own certificate instead may cause Anki to throw up SSL errors. In such
+environments, you may be able to work around the errors with
+https://ankiweb.net/shared/info/878367706
+
+NOTE: An alternative solution is to install a local proxy server, and point
+that proxy server at your normal proxy server. You can then tell Anki to use
+the local proxy, which will redirect requests to the proxy you normally use.
 
 [[browser]]
 = Browser =
@@ -3089,9 +3072,10 @@ to tags, finding cards forgotten a certain number of times, and so on. Please
 see the <<searching,searching>> section of the manual for more information on
 the different possibilities.
 
-NOTE: Filtered decks can not include cards that are suspended, buried, or
-already in a different filtered deck. For this reason, a search in the browser
-may reveal cards that don't end up in the filtered deck.
+NOTE: Filtered decks can not pull in cards that are suspended, buried, or
+already in a different filtered deck. And unless you are using the experimental
+scheduler, they can not pull in cards that are in (re)learning. For this reason,
+a search in the browser may reveal cards that don't end up in the filtered deck.
 
 The *limit* option controls how many cards will be gathered into the deck. The
 order you select controls both the order cards are gathered in, and the order

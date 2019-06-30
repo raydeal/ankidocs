@@ -24,6 +24,82 @@ https://anki.tenderapp.com/discussions/beta-testing
 
 == Detailed changes ==
 
+=== Changes in 2.1.14beta1 (702788c8) ===
+
+- Fix an issue with steps getting lost when learning cards moved out of a V2 filtered deck.
+- Fix lost space when pasting indented text.
+- Limit image height relative to window height, not document height.
+- Fix deck list being re-rendered unnecessarily.
+
+=== Changes in 2.1.13beta3 (3ba55990) ===
+
+This is a candidate for the next stable release, so if you encounter any
+issues, please let me know as soon as you can.
+
+- Fix preview window failing to appear when 'show both sides' enabled.
+- Removing trailing BR tag when pasting into an empty field.
+- Don't throw an error when non-Latin text in the Javascript console can't be shown.
+- Double click on add-ons to edit their configuration (thanks to lovac42).
+- Fix the window icon in a few screens (thanks to John).
+- Don't highlight the deck selection button in the add screen on Windows.
+- Improve the default 'type in the answer' note type.
+
+=== Changes in 2.1.13beta2 (bcb422be) ===
+
+- Fix a packaging error that was preventing startup.
+- Fix relearning cards being given learning step count in V2 scheduler.
+
+=== Changes in 2.1.13beta1 (9ce1f051) ===
+
+- Fix formatting getting lost when copying&pasting between fields on macOS.
+- Fix some issues that cause the main window to get stuck.
+- Fix an empty deck list sometimes appearing when restoring from a backup.
+- Fix Anki hanging after an error occurs during startup.
+- Fix error caused by profile with trailing space on Windows.
+- Fix error message when syncing with an unconfirmed email address.
+- Use jsonschema for add-on manifests (thanks to Erez).
+- Warn in DB check when high due numbers are encountered.
+- Improve error messages on full disk and failed add-on deletion.
+
+=== Changes in 2.1.12beta4 (eef86bf3) ===
+
+- Fix an error caused by missing note types.
+- A possible workaround for the audio player getting stuck on Macs.
+- A few other minor fixes.
+- Display the installed version in the Windows uninstall screen.
+
+=== Changes in 2.1.12beta3 (4a2f39e8) ===
+
+- The Mac build now uses the new hardened runtime on Mojave - please report
+any regressions you may notice.
+- Fix possible blank window on startup on Windows.
+- Revert AltGr change in Beta1 due to side effects - it's been moved into an add-on.
+- Fix some issues with previewing.
+- Disable add-on config button when not appropriate (thanks to Glutanimate).
+- Add-ons hosted on AnkiWeb can now define conflicts in the manifest file.
+- Other minor fixes.
+
+=== Changes in 2.1.12beta2 (380d59f7) ===
+
+- See beta3.
+
+=== Changes in 2.1.12beta1 (380d59f7) ===
+
+- Tweaks to the 'deck age' graph binning (thanks to Jian).
+- Fix memory leak in card layout screen.
+- Fix preview window in browser sometimes not updating.
+- Fix card counts not updating when a review is undone.
+- Switch to mplayer on the alternate OS X build, as mpv was not working on
+some older machines.
+- Make sure mpv doesn't attempt to load scripts from default location.
+- Fix an error that could occur on startup on some Windows installs.
+- Fix an issue checking for add-on updates (thanks to Glutanimate).
+- Fix fields appearing under editor buttons.
+- Fix an issue that could prevent profile renaming/deletion on Windows.
+- Change focus outline colour on Windows.
+- Work around a Qt issue that could cause AltGr+key combinations to trigger
+a shortcut (thanks to dlon).
+
 === Changes in 2.1.10beta2 (0543df7d) ===
 
 - Improve Japanese interface font on Windows 10, and make it possible for
